@@ -11,6 +11,7 @@ class ScrapeLogs(Base):
     
     aum = relationship("AumSnapshots", backref="AumSnapshots", lazy=False)
     
-    def __init__(self, company:int, start:str) -> None:
+    def __init__(self, id:str, company:int, start:str) -> None:
+        self.id = id
         self.company = company
         self.start = start
