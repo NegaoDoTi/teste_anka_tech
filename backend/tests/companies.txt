@@ -1,0 +1,6 @@
+name;url_site;url_linkedin;url_instagram;url_x
+Aponto Capital;NÂO DISPONIVEL;https://www.linkedin.com/company/apontowealth/;https://www.instagram.com/apontocapital/;NÂO DISPONIVEL
+Apu Capital;https://apucapital.com.br/;https://www.linkedin.com/company/apucapital/?originalSubdomain=br;https://www.instagram.com/apu.capital/;NÂO DISPONIVEL
+Apuama Capital;https://apuamacapital.com.br/;https://www.linkedin.com/company/apuama-capital/?originalSubdomain=br;https://www.instagram.com/apuamacapital/;NÂO DISPONIVEL
+APX Invest;https://apexpartners.com.br/;https://www.linkedin.com/company/apxinvest/?originalSubdomain=br;https://www.instagram.com/apx.invest/;https://x.com/Apex__Invest
+Aqua Capital;https://aqua.capital/;https://www.linkedin.com/company/aqua-capital-partners/?originalSubdomain=br;NÂO DISPONIVEL;NÂO DISPONIVEL
