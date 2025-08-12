@@ -12,16 +12,16 @@ class UploadController:
             
     async def read_save_file(self, file_data:bytes) -> None:
         
-        file_path = f"{self.upload_path}/{uuid4()}.csv"
+        file_path = Path(f"{self.upload_path}/{uuid4()}.csv")
         
-        with open(file_path, "wb") as csv_file:
+        with open(str(file_path), "wb") as csv_file:
             csv_file.write(file_data)
             
             csv_file.close()
             
         data = []
         
-        with open(file_path, "r+") as  csv:
+        with open(str(file_path), "r+") as  csv:
             for row in DictReader(csv, delimiter=";"):
                 data.append(row)
                 
@@ -39,6 +39,7 @@ class UploadController:
         for dict_data in data:
             for key in keys:
                 if not key in dict_data:
+                    file_path.unlink()
                     raise Exception(f"Arquivos CSV fora do padrão, a coluna {key} não esta presente")
 
             await publish.publish_one(dict_data)
