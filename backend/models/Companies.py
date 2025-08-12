@@ -14,5 +14,9 @@ class Companies(Base):
     
     scrape_logs = relationship("ScrapeLogs", backref="ScrapeLogs", lazy=True)
     
-    def __init__(self, name:str) -> None:
+    def __init__(self, name:str, url_site:str, url_linkedin:str, url_instagram:str, url_x:str) -> None:
         self.name = name
+        self.url_site = url_site
+        self.url_linkedin = url_linkedin
+        self.url_instagram = url_instagram
+        self.url_x = url_x
