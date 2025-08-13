@@ -11,7 +11,7 @@ class RabbitConsume:
         
         self.channel = self.__connection.channel()
                 
-    async def consume_one(self) -> dict:
+    async def consume_one(self) -> dict | None:
         method_frame, header_frame, body = self.channel.basic_get(queue=RABBIT_QUEUE)
         
         if method_frame:
