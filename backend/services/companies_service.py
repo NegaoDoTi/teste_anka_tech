@@ -41,5 +41,36 @@ class CompaniesService:
             company = result.scalars().one()
             
         return company
+    
+    async def update_company(
+        self,
+        id:int,
+        name:str = None, 
+        url_site:str = None, 
+        url_linkedin:str = None, 
+        url_instagram:str = None, 
+        url_x:str = None
+    ) -> Companies:
         
-        
+        async with async_session() as session:
+            company = await session.get(Companies, id)
+            
+            if name:
+                company.name = name
+            
+            if url_site:
+                company.url_site = url_site
+            
+            if url_linkedin:
+                company.url_linkedin = url_linkedin
+            
+            if url_instagram:
+                company.url_instagram = url_instagram
+
+            if url_x:
+                company.url_instagram = url_x
+                
+            await session.commit()
+            await session.refresh(company)
+            
+            return company
