@@ -3,6 +3,7 @@ from models.Companies import Companies
 from sqlalchemy.future import select
 
 class CompaniesService:
+    
     async def create_company(
         self, 
         name:str, 
