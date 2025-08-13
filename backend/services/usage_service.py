@@ -3,9 +3,9 @@ from models.Usage import Usage
 
 class UsageService:
     
-    async def create_usage(self, use:int, date:str) -> Usage:
+    async def create_usage(self, use:int, date:str, scrape_id:str) -> Usage:
         async with async_session() as session:
-            usage = Usage(use=use, date=date)
+            usage = Usage(use=use, date=date, scrape_id=scrape_id)
             
             session.add(usage)
             
