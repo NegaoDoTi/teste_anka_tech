@@ -29,6 +29,6 @@ class RabbitConsume:
         
     async def check_message_count(self) -> int:
         
-        queue_info = await self.channel.queue_declare(RABBIT_QUEUE, passive=True)
+        queue_info = self.channel.queue_declare(RABBIT_QUEUE, passive=True)
         
         return queue_info.method.message_count
