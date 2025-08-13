@@ -10,6 +10,7 @@ class ScrapeLogs(Base):
     end = Column(VARCHAR(19))
     
     aum = relationship("AumSnapshots", backref="AumSnapshots", lazy=False)
+    usage = relationship("Usage", backref="Usage", lazy=True)
     
     def __init__(self, id:str, company:int, start:str) -> None:
         self.id = id
