@@ -73,4 +73,4 @@ class CompaniesService:
             await session.commit()
             await session.refresh(company)
             
-            return company
+        return company
