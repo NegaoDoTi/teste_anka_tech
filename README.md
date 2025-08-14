@@ -53,3 +53,8 @@ Realizar rescrape:
 ## Como executar testes
 
     1. execute o comando na raiz do projeto: PYTHONPATH=. pytest -s
+
+## Outras instruções
+
+    .O arquivo csv de base está em ./backend/companies.csv
+    .O relatorio de resultado está em: ./backend/reports/relatorio.xlsx
