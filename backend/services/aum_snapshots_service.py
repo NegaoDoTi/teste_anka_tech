@@ -12,4 +12,6 @@ class AumSnapshotsService:
             await session.commit()
             await session.refresh(aum_s)
             
-        return AumSnapshots
+            await session.close()
+            
+        return aum_s

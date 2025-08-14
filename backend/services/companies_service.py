@@ -1,6 +1,7 @@
 from database.connection import async_session
 from models.Companies import Companies
 from sqlalchemy.future import select
+import asyncio
 
 class CompaniesService:
     
@@ -28,17 +29,23 @@ class CompaniesService:
             session.add(company)
             await session.commit()
             await session.refresh(company)
+            
+            await session.close()
                 
         return company
     
-    async def find_company(self, name:str = None) -> Companies:
+    async def find_company(self, name:str = None) -> Companies | None:
         name = name.lower()
         
         async with async_session() as session:
             query = select(Companies).where(Companies.name == name)
             result  = await session.execute(query)
+            try:
+                company = result.scalars().one()
+            except:
+                company = None
             
-            company = result.scalars().one()
+            await session.close()
             
         return company
     
@@ -55,6 +62,8 @@ class CompaniesService:
         async with async_session() as session:
             company = await session.get(Companies, id)
             
+            name = name.lower()
+            
             if name:
                 company.name = name
             
@@ -68,9 +77,11 @@ class CompaniesService:
                 company.url_instagram = url_instagram
 
             if url_x:
-                company.url_instagram = url_x
+                company.url_x = url_x
                 
             await session.commit()
             await session.refresh(company)
+            
+            await session.close()
             
         return company

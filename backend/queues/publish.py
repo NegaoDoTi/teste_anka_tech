@@ -5,6 +5,9 @@ import logging
 from traceback import format_exc
 
 class RabbitPublish:
+    """Publisher do rabbit
+    """
+    
     def __init__(self):
         self.__parameters = URLParameters(RABBITMQ_URL)
         self.__connection = BlockingConnection(self.__parameters)
@@ -14,6 +17,15 @@ class RabbitPublish:
         self.channel.queue_declare(RABBIT_QUEUE, durable=True)
         
     async def publish_one(self, data:dict) -> None:
+        """Metodo que publica apenas um mensagem na fila
+
+        Args:
+            data (dict): mensagem a ser enviada
+
+        Raises:
+            Exception: Trata o erro e lança outro caso não seja possivel publicar a mensagem
+        """
+        
         try:
             message = dumps(data)
             
@@ -22,4 +34,5 @@ class RabbitPublish:
             return
         except Exception:
             logging.error(f"{format_exc()}")
+            
             raise Exception(f"Erro inesperado ao enviar dados para fila")

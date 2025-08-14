@@ -10,6 +10,6 @@ class Usage(Base):
     scrape_id = Column(UUID, ForeignKey("scrape_logs.id"))
     
     def __init__(self, use:int, date:str, scrape_id:str) -> None:
-        self.use = use
+        self.total_tokens = use
         self.date = date
         self.scrape_id = scrape_id

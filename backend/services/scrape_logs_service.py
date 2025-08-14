@@ -14,10 +14,12 @@ class ScrapeLogsService:
             session.add(scrape)
             await session.commit()
             await session.refresh(scrape)
+            
+            await session.close()
         
         return scrape
     
-    async def update_scrape_end(self, id:int, end:str) -> bool:
+    async def update_scrape_end(self, id:str, end:str) -> ScrapeLogs:
         async with async_session() as session:
             
             scrape = await session.get(ScrapeLogs, id)
@@ -28,5 +30,8 @@ class ScrapeLogsService:
             scrape.end = end
             
             await session.commit()
+            await session.refresh(scrape)
             
-            return True
+            await session.close()
+            
+        return scrape

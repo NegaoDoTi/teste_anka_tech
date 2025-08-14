@@ -4,6 +4,9 @@ from csv import DictReader
 from queues.publish import RabbitPublish
 
 class UploadController:
+    """Controller da rota Upload
+    """
+    
     def __init__(self):
         self.upload_path = Path(Path(__file__).parent.parent, "uploads")
         
@@ -11,6 +14,15 @@ class UploadController:
             self.upload_path.mkdir()
             
     async def read_save_file(self, file_data:bytes) -> None:
+        """Responsavel por salvar e validar o arquivo csv
+
+        Args:
+            file_data (bytes): o arquivo csv
+
+        Raises:
+            Exception: lança um excepion caso o arquivo csv nao contivar toda as colunas no padrao
+        """
+        
         
         file_path = Path(f"{self.upload_path}/{uuid4()}.csv")
         

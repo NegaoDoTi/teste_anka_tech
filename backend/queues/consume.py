@@ -4,6 +4,8 @@ from json import loads
 
 
 class RabbitConsume:
+    """Consumer do rabbit
+    """
     
     def __init__(self):
         self.__parameters = URLParameters(RABBITMQ_URL)
@@ -12,6 +14,12 @@ class RabbitConsume:
         self.channel = self.__connection.channel()
                 
     async def consume_one(self) -> dict | None:
+        """Metodo responsavel por consumir apenas uma mensagem da fila do rabbit
+
+        Returns:
+            dict | None: retorna a mensagem vinda da fila ou none se a fila estiver vazia
+        """
+        
         method_frame, header_frame, body = self.channel.basic_get(queue=RABBIT_QUEUE)
         
         if method_frame:
@@ -28,6 +36,11 @@ class RabbitConsume:
             return None
         
     async def check_message_count(self) -> int:
+        """Metodo que checa a quantiade de mensagens na fila
+
+        Returns:
+            int: Numero de mensagens na fila
+        """
         
         queue_info = self.channel.queue_declare(RABBIT_QUEUE, passive=True)
         

@@ -4,6 +4,7 @@ from fastapi.responses import JSONResponse
 
 upload_route = APIRouter()
 
+"""Rota de upload """
 @upload_route.post("/upload", response_class=JSONResponse)
 async def upload_csv(file: UploadFile) -> JSONResponse:
     file_data = await file.read()
