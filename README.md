@@ -4,16 +4,16 @@ Aplicação coleta automatica de Patromônio
 
 ## Como instalar
 
-    1. Instale o [\[Docker\]()](https://docs.docker.com/install/)
-    2. Instale o [Docker Compose]
-    3. Clone o repositorio
-    4. Copie os arquivos .env.example para .env
-    6. Execute o comando `docker compose up --build -d`
-    9. Fim
+1. Instale o [\[Docker\]()](https://docs.docker.com/install/)
+2. Instale o [Docker Compose]
+3. Clone o repositorio
+4. Copie os arquivos .env.example para .env
+5. Execute o comando `docker compose up --build -d`
+6. Fim
 
 ## Documentação da API
 
-    . Link da documentação da API: [Link](https://www.postman.com/cryosat-candidate-18825323/anka-teck/collection/bv3yn6n/anka-tech?action=share&creator=33276918)
+. Link da documentação da API: [Link](https://www.postman.com/cryosat-candidate-18825323/anka-teck/collection/bv3yn6n/anka-tech?action=share&creator=33276918)
 
 ## Tecnologias Utilizada
 
@@ -28,11 +28,11 @@ Aplicação coleta automatica de Patromônio
 
 ## Diagrama do Banco de dados
 
-    ![Diagrama banco de dado](backend/diagrama_banco_de_dados.png)
+![Diagrama banco de dado](backend/diagrama_banco_de_dados.png)
 
 ## Documentação da API 2
 
-Url base: http/localhost:5000
+Url base: http://localhost:5000
 
 ```http
     POST /upload
