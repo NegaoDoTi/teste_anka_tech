@@ -5,7 +5,7 @@ Aplicação coleta automatica de Patromônio
 ## Como instalar
 
 1. Instale o [Docker](https://docs.docker.com/install/)
-2. Instale o [Docker Compose]
+2. Instale o [Docker Compose](https://docs.docker.com/compose/install/linux/)
 3. Clone o repositorio
 4. Copie os arquivos .env.example para .env
 5. Execute o comando `docker compose up --build -d`
