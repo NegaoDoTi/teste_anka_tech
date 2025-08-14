@@ -15,6 +15,9 @@ services:
     volumes:
       - ./pg_data:/var/lib/postgresql/data
     
+    networks:
+      - teste_anka_tech
+    
   rabbitmq:
     image: rabbitmq:3-management
     ports:
@@ -22,8 +25,29 @@ services:
       - "15672:15672"
     expose:
       - 5672
+    networks:
+      - teste_anka_tech
     
-  # backend:
-  #   build: ./backend
-  #   depends_on: [db, rabbitmq, playwright]
+  backend:
+    build:
+      context: ./backend
+      dockerfile: app.dockerfile
+    depends_on: 
+      - db 
+      - rabbitmq
+    volumes:
+    - ./backend/reports:/backend/reports
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+      - RABBITMQ_URL=${RABBITMQ_URL}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - DEBUG=${DEBUG}
+      - PORT=${PORT}
+      - RABBIT_QUEUE=${RABBIT_QUEUE}
+    networks:
+      - teste_anka_tech
 
+
+networks:
+  teste_anka_tech:
+    driver: bridge
