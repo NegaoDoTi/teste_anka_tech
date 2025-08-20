@@ -34,10 +34,10 @@ class UploadView:
                 )
             try:
                 await self.__controller.read_save_file(file_data)
-            except Exception as e:
-                message = e.args[0]
+            except Exception:
+                logging.error(format_exc())
                 return JSONResponse(
-                    UploadResponse(message=message).model_dump(),
+                    UploadResponse(message="Erro inesperado ao salvar o arquivo csv contate o Administrador!").model_dump(),
                     status.HTTP_400_BAD_REQUEST
                 )
             
