@@ -17,11 +17,6 @@ services:
     
     networks:
       - teste_anka_tech
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
-      interval: 5s
-      timeout: 5s
-      retries: 5
     
   rabbitmq:
     image: rabbitmq:3-management
@@ -32,21 +27,14 @@ services:
       - 5672
     networks:
       - teste_anka_tech
-    healthcheck:
-      test: ["CMD", "rabbitmq-diagnostics", "-q", "check_running"]
-      interval: 5s
-      timeout: 3s
-      retries: 5
     
   backend:
     build:
       context: ./backend
       dockerfile: app.dockerfile
     depends_on: 
-      db:
-        condition: service_healthy
-      rabbitmq:
-        condition: service_healthy
+      - db
+      - rabbitmq
     volumes:
     - ./backend/reports:/backend/reports
     environment:
@@ -57,7 +45,7 @@ services:
       - PORT=${PORT}
       - RABBIT_QUEUE=${RABBIT_QUEUE}
     ports:
-      - 5000:5000
+      - "5000:5000"
     networks:
       - teste_anka_tech
 

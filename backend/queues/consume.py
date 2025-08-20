@@ -12,6 +12,8 @@ class RabbitConsume:
         self.__connection = BlockingConnection(self.__parameters)
         
         self.channel = self.__connection.channel()
+        
+        self.channel.queue_declare(RABBIT_QUEUE, durable=True)
                 
     async def consume_one(self) -> dict | None:
         """Metodo responsavel por consumir apenas uma mensagem da fila do rabbit
